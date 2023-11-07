@@ -39,8 +39,8 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center -mt-32">
-        <Image src="/images/logo.png" width={100} height={100} alt="Rasya Cafe Logo" className="mx-auto" />
-        <p className="mt-0 text-lg leading-8 text-gray-600">Cash Calculator</p>
+        <Image src="/images/logo.png" width={132} height={132} alt="Rasya Cafe Logo" className="mx-auto" />
+        <p className="-mt-2 text-lg leading-8 text-gray-600">Cash Calculator</p>
       </div>
       <form
         action="#"
