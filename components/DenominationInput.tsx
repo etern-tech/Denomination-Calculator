@@ -10,12 +10,12 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
   onInputChange,
 }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(0, parseInt(e.target.value));
-      onInputChange(denomination, value);
-
-      if(!value) {
-        e.target.value = "";
-      }
+    let value = parseInt(e.target.value);
+    if(!value) {
+      value = 0;
+      e.target.value = "";
+    }
+    onInputChange(denomination, value);
   };
 
   const handleInputBlur = (e: ChangeEvent<HTMLInputElement>) => {
