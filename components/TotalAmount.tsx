@@ -14,7 +14,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ total }) => {
             </span>
           </p>
           <p className="mt-6 text-xs leading-5 text-gray-600">
-            Please cross-check the amount before proceeding.
+            Please cross-check all the denomination counts before proceeding.
           </p>
         </div>
       </div>

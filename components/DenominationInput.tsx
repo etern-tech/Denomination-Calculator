@@ -10,8 +10,19 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
   onInputChange,
 }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
-    onInputChange(denomination, value);
+    try {
+      const value = eval(e.target.value.toString()) || 0;
+      e.target.value = value.toString();
+      onInputChange(denomination, value);
+    } catch (error) {
+      // console.error(error);
+    }
+  };
+
+  const handleInputBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    if( e.target.value ) {
+      e.target.value = parseInt(e.target.value).toString();
+    }
   };
 
   return (
@@ -23,12 +34,14 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
           </span>
         </div>
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
           name="price"
           id={`d-${denomination}`}
-          className="block w-full rounded-md border-0 py-1.5 pl-20 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="block w-full rounded-md border-0 py-4 pl-20 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           placeholder="0"
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
         />
         {/* <div className="absolute inset-y-0 right-0 flex items-center">
           <label htmlFor="currency" className="sr-only">

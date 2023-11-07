@@ -2,6 +2,7 @@
 
 import DenominationInput from "@/components/DenominationInput";
 import TotalAmount from "@/components/TotalAmount";
+import Image from "next/image";
 import { useState } from "react";
 
 const denominations = [500, 200, 100, 50, 20, 10, 5, 2, 1];
@@ -37,11 +38,9 @@ export default function Example() {
           }}
         />
       </div>
-      <div className="mx-auto max-w-2xl text-center -my-5">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Cash Calculator
-        </h2>
-        <p className="mt-2 text-lg leading-8 text-gray-600">Rasya Cafe</p>
+      <div className="mx-auto max-w-2xl text-center -mt-32">
+        <Image src="/images/logo.png" width={100} height={100} alt="Rasya Cafe Logo" className="mx-auto" />
+        <p className="mt-0 text-lg leading-8 text-gray-600">Cash Calculator</p>
       </div>
       <form
         action="#"
