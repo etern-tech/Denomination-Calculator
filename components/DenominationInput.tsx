@@ -1,3 +1,4 @@
+import { parse } from "path";
 import { ChangeEvent } from "react";
 
 interface DenominationInputProps {
@@ -10,18 +11,24 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
   onInputChange,
 }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    try {
-      const value = eval(e.target.value.toString()) || 0;
-      e.target.value = value.toString();
+    const value = Math.max(0, parseInt(e.target.value));
       onInputChange(denomination, value);
-    } catch (error) {
-      // console.error(error);
-    }
+
+      if(!value) {
+        e.target.value = "";
+      }
   };
 
   const handleInputBlur = (e: ChangeEvent<HTMLInputElement>) => {
-    if( e.target.value ) {
-      e.target.value = parseInt(e.target.value).toString();
+    try {
+      if(e.target.value) {
+        const value = Math.max(0, eval(e.target.value));
+        onInputChange(denomination, value);
+        e.target.value = !value ? "" : value.toString();
+      }
+    } catch (error) {  
+      const value = parseInt(e.target.value) || 0;
+      e.target.value = !value ? "" : value.toString();
     }
   };
 
