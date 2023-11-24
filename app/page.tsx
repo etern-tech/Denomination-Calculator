@@ -39,7 +39,7 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-2xl text-center -mt-28 -mb-10">
-        <Image src="/images/logo.png" width={132} height={132} alt="Rasya Cafe Logo" className="mx-auto" />
+        <Image src="/images/logo.png" width={132} height={132} priority alt="Rasya Cafe Logo" className="mx-auto" />
         <p className="-mt-2 text-lg leading-8 text-gray-600">Cash Calculator</p>
       </div>
       <form

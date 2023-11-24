@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 interface DenominationInputProps {
   denomination: number;
@@ -31,6 +31,33 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
     }
   };
 
+  // increase or decrease the count of the denomination by 1 on click of the up or down arrow
+  const handleCountChange = (e: KeyboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    if(e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+    // @ts-ignore
+    let value = parseInt(e.target.value);
+    
+    if(!value) {
+      value = 0;
+    }
+
+    if(e.key == "ArrowUp") {
+      ++value;
+    } else if(e.key == "ArrowDown") {
+      --value;
+    }
+
+    if(value < 0) {
+      value = 0;
+    }
+    // @ts-ignore
+    e.target.value = value.toString();
+
+    onInputChange(denomination, value);
+  };
+
   return (
     <div>
       <div className="relative mt-2 rounded-md shadow-sm">
@@ -48,6 +75,9 @@ const DenominationInput: React.FC<DenominationInputProps> = ({
           placeholder="0"
           onChange={handleInputChange}
           onBlur={handleInputBlur}
+          onKeyUp={handleCountChange}
+          autoComplete="off"
+          autoFocus
         />
         {/* <div className="absolute inset-y-0 right-0 flex items-center">
           <label htmlFor="currency" className="sr-only">
